@@ -19,17 +19,7 @@ namespace ExamTwoCodeQuestions.DataTests
         }
 
 
-        //Changing the "Fruit" property should invoke PropertyChanged for "Fruit"
-        [Fact]
-        public void ChangingFruitShouldInvokePropertyChangedForFruit()
-        {
-            var cobbler = new Cobbler();
-            Assert.PropertyChanged(cobbler, "Fruit", () =>
-            {
-                cobbler.Fruit = FruitFilling.Cherry;
-            });
-        }
-
+      
         //Changing the "WithIceCream" property should invoke PropertyChanged for "WithIceCream"
         [Fact]
         public void ChangingWithIceCreamShouldInvokePropertyChangedForWithIceCream()
@@ -41,41 +31,18 @@ namespace ExamTwoCodeQuestions.DataTests
             });
         }
 
-        //Changing the "Fruit" property should invoke PropertyChanged for "IsPeach"
-        [Fact]
-        public void ChangingFruitShouldInvokePropertyChangedForIsPeach()
+        //Changing the "Fruit" property should invoke PropertyChanged for "Fruit"
+        [Theory]
+        [InlineData(FruitFilling.Cherry)]
+        [InlineData(FruitFilling.Blueberry)]
+        [InlineData(FruitFilling.Peach)]
+        public void ChangingFillingShouldInvokePropertyChangedOnFruit(FruitFilling fruit)
         {
             var cobbler = new Cobbler();
-            Assert.PropertyChanged(cobbler, "IsPeach", () =>
-            {
-                cobbler.Fruit = FruitFilling.Peach;
-            });
+            Assert.PropertyChanged(cobbler, "Fruit", () =>
+                cobbler.Fruit = fruit);
         }
 
-        //Changing the "Fruit" property should invoke PropertyChanged for "IsCherry"
-        [Fact]
-        public void ChangingFruitShouldInvokePropertyChangedForIsCherry()
-        {
-            var cobbler = new Cobbler();
-            Assert.PropertyChanged(cobbler, "IsCherry", () =>
-            {
-                cobbler.Fruit = FruitFilling.Cherry;
-            });
-        }
-
-        //Changing the "Fruit" property should invoke PropertyChanged for "IsBlueberry"
-        [Fact]
-        public void ChangingFruitShouldInvokePropertyChangedForIsBlueberry()
-        {
-            var cobbler = new Cobbler();
-            Assert.PropertyChanged(cobbler, "IsBlueberry", () =>
-            {
-                cobbler.Fruit = FruitFilling.Blueberry;
-            });
-        }
-
-
-      
 
         //Changing the "WithIceCream" property should invoke PropertyChanged for "Price"
         [Fact]

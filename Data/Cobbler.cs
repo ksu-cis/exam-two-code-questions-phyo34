@@ -1,4 +1,9 @@
-﻿using System;
+﻿/***
+ * Author: May Phyo
+ * Class represents the cobbler
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -27,10 +32,16 @@ namespace ExamTwoCodeQuestions.Data
             set
             {
                 fruit = value;
-                NotifyOfPropertyChange("Fruit");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Fruit"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Blueberry"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Peach"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cherry"));
             }
         }
 
+        /// <summary>
+        /// Private backing variable for ice creeam
+        /// </summary>
         private bool withIceCream = true;
         /// <summary>
         /// If the cobbler is served with ice cream
@@ -41,13 +52,15 @@ namespace ExamTwoCodeQuestions.Data
             set
             {
                 withIceCream = value;
-                NotifyOfPropertyChange("WithIceCream");
-            
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WithIceCream"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+
             }
         }
 
         /// <summary>
-        /// Property to bind a radio button to FruitFilling.Peach
+        /// If fruit filling is peach
         /// </summary>
         public bool IsPeach
         {
@@ -56,7 +69,7 @@ namespace ExamTwoCodeQuestions.Data
         }
 
         /// <summary>
-        /// Property to bind a radio button to FruitFilling.Cherry
+        /// If fruit filling is cherry
         /// </summary>
         public bool IsCherry
         {
@@ -65,7 +78,7 @@ namespace ExamTwoCodeQuestions.Data
         }
 
         /// <summary>
-        /// Property to bind a radio button to FruitFilling.Blueberry
+        ///If fruit filing is blueblerry
         /// </summary>
         public bool IsBlueberry
         {
@@ -97,15 +110,7 @@ namespace ExamTwoCodeQuestions.Data
             }
         }
 
-        /// <summary>
-        /// Notifies order if property changes
-        /// </summary>
-        /// <param name="propertyName"></param>
-        protected void NotifyOfPropertyChange(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
-        }
+    
 
 
     }

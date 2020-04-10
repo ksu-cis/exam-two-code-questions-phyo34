@@ -5,19 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExamTwoQuestions.PointOfSale"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-         <ColumnDefinition/>
-        <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel VerticalAlignment="Center">
-            <Label Content="Fruit Filling" FontSize="40" Margin="0,0,0,30"/>
-            <RadioButton FontSize="35" GroupName="Fruit" IsChecked="{Binding Path=IsPeach}" Margin="0,0,0,15">Peach</RadioButton>
-            <RadioButton FontSize="35" GroupName="Fruit" IsChecked="{Binding Path=IsCherry}" Margin="0,0,0,15">Cherry</RadioButton>
-            <RadioButton FontSize="35" GroupName="Fruit" IsChecked="{Binding Path=IsBlueberry}" Margin="0,0,0,15">Blueberry</RadioButton>
-        </StackPanel>
-        <CheckBox Grid.Column="1" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=WithIceCream}">With Ice Cream</CheckBox>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="70" Background="Pink"  HorizontalAlignment="Center"    Foreground="Yellow"  FontWeight="Bold" Width="800" Margin="0,0,0,275" Grid.RowSpan="2">Customize the Cobbler!</TextBlock>
+        <Grid Grid.Row="1" Background="DarkCyan">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Background="DarkCyan" >
+                <TextBlock FontWeight="Bold" FontSize="30"  Foreground="White" Margin="20" >Choose your filling:</TextBlock>
+                <Viewbox Height="70" HorizontalAlignment="Left">
+                    <RadioButton GroupName="Filling" FontSize="20" Margin="20,5" VerticalContentAlignment="Center" Foreground="PeachPuff" IsChecked="{Binding Path=Peach}" >Peach</RadioButton>
 
-</Grid>
+                </Viewbox>
+                <Viewbox Height="70" HorizontalAlignment="Left">
+                    <RadioButton GroupName="Filling" FontSize="20" Margin="20,5" VerticalContentAlignment="Center" Foreground="Blue" IsChecked="{Binding Path=Blueberry}" >Blueberry</RadioButton>
+                </Viewbox>
+                <Viewbox Height="70" HorizontalAlignment="Left">
+                    <RadioButton GroupName="Filling" FontSize="20" Margin="20,5" VerticalContentAlignment="Center" Foreground="Red" IsChecked="{Binding Path=Cherry}">Cherry</RadioButton>
+
+                </Viewbox>
+
+            </StackPanel>
+            <StackPanel Background="DarkCyan" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" Grid.Column="1">
+
+                <CheckBox IsChecked="{Binding Path=WithIceCream}" VerticalAlignment="Center" Margin="20" Content="Ice Cream" Foreground="White" >
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="3" ScaleY="3" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+            </StackPanel>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Background="DarkCyan">
+            <TextBlock Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0">Price:</TextBlock>
+            <TextBlock FontSize="25" VerticalAlignment="Center" Text="{Binding Path=Price, StringFormat='C'}"/>
+        </StackPanel>
+    </Grid>
 </UserControl>
